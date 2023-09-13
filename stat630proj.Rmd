@@ -1,0 +1,47 @@
+---
+title: "project 2"
+author: "Jessica Grover"
+date: "2022-11-14"
+output: pdf_document
+---
+
+
+```{r}
+boston<-read.csv("~/Stat 630/data/Boston.csv")
+head(boston)
+```
+
+```{r}
+summary(boston)
+```
+```{r}
+ggplot(boston, aes(x = ptratio, y = medv)) +
+  geom_point() +
+  geom_smooth(method = 'lm', span=0.1,se=FALSE) +
+  labs(x="Pupil Teacher Ratio",y="Median  House Value")
+```
+
+
+
+```{r}
+library(performance)
+mod4 <- lm(medv ~ ptratio, data = boston)
+summary(mod4)
+check_model(mod4)
+```
+
+```{r}
+plot(medv ~ ptratio, data = boston, pch=10,col = "Red4")
+abline(mod4)
+```
+```{r}
+mod5 <- lm(medv ~ lstat, data = boston)
+mod5
+summary(mod5)
+```
+
+```{r}
+plot(medv ~ lstat , data = boston, pch=10,col = "Red4")
+abline(mod5)
+```
+
